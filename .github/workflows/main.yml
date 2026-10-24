@@ -1,26 +1,26 @@
 name: Test
 
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-    test-and-deploy:
-        runs-on: ubuntu-latest
+  test-and-deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Setup node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-            - name: Install dependencies
-              run: npm install
+      - name: Install dependencies
+        run: npx --yes npm@11.19.0 install
 
-            - name: Run unit tests
-              run: npm run test
+      - name: Run unit tests
+        run: npx --yes npm@11.19.0 run test
